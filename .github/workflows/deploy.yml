@@ -1,0 +1,27 @@
+name: Static Website Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-site:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build website
+        run: |
+          # Agar tumhara site static HTML hai, ye step skip kar sakte ho
+          # Agar tum kisi static site generator use kar rahe ho jaise Hugo/Jekyll:
+          # Hugo example: hugo
+          echo "Building site..."
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public   # Jahan tumhara built website ka folder ho
